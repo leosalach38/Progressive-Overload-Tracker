@@ -18,6 +18,17 @@ public class Lift {
     }
 
     public void logWorkout(double weight, int lowestRep, int setsCompleted){
+        if (weight < 0) {
+            throw new IllegalArgumentException("Weight cannot be negative");
+        }
+        if (lowestRep < 0) {
+            throw new IllegalArgumentException("Reps cannot be negative");
+        }
+        if (setsCompleted < 1) {
+            throw new IllegalArgumentException(
+                    "Sets completed must be at least 1");
+        }
+
         this.lastWeight = weight;
         this.lastReps = lowestRep;
         this.setsCompleted = setsCompleted;
