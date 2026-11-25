@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public void main() throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         Lift[] lifts = {
@@ -19,7 +19,7 @@ public class Main {
             IO.println("0: EXIT");
             IO.println("Select lift to log: ");
 
-            int choice = Integer.parseInt(reader.readLine());
+            int choice = readInt(reader);
             if (choice == 0){
                 break;
             }
