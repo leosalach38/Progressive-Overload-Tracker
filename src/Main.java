@@ -14,7 +14,7 @@ public class Main {
         while(true){
             IO.println("\n--- Simple Overload Tracker ---");
             for(int i = 0; i < lifts.length; i++){
-                IO.println((i+1) + ". " + lifts[i].getName() + " [" + lifts[i].getNextTarget() + "]"));
+                IO.println((i+1) + ". " + lifts[i].getName() + " [" + lifts[i].getNextTarget() + "]");
             }
             IO.println("0: EXIT");
             IO.println("Select lift to log: ");
