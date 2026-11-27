@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//stores data from lift to a CSV file 
 public class DataLog {
     private final String filePath;
 
@@ -14,6 +16,7 @@ public class DataLog {
         this.filePath = filePath;
     }
 
+// converts lifts to CSV format in the following layout:  name, numSets, minReps, maxReps, increments, lastWeight, lastReps, setsCompleted
     public void save(Lift[] lifts) {
         if (lifts == null) {
             return;
@@ -44,6 +47,9 @@ public class DataLog {
         }
     }
 
+    
+    //loads saved lifts
+    // falls back to default lifts if file does nto exist
     public Lift[] loadOrDefault(Lift[] fallbackLifts) {
         File file = new File(filePath);
         if (!file.exists() || !file.isFile()) {
@@ -71,6 +77,8 @@ public class DataLog {
         return loaded.isEmpty() ? fallbackLifts : loaded.toArray(new Lift[0]);
     }
 
+    // parses single column of CSV file into Lift object
+    // returns null if column fails to be read
     private Lift parseLiftRow(String line) {
         String[] parts = line.split(",", -1);
         if (parts.length != 8) {
@@ -93,7 +101,8 @@ public class DataLog {
             return null;
         }
     }
-
+    
+    // replaces commas in text fiels with spaces to prevent column shifiting
     private String escapeCsv(String value) {
         return value == null ? "" : value.replace(",", " ");
     }
