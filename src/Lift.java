@@ -1,3 +1,6 @@
+/*
+Class that represnets a single excerise and tracks progressive overaload
+*/
 public class Lift {
     private String name;
     private int numSets;
@@ -8,6 +11,7 @@ public class Lift {
     private int lastReps;
     private int setsCompleted;
 
+    // contructs a lift with set bounds, rep bounds, and weight porgression.
     public Lift(String name, int numSets, int minReps, int maxReps, double increments) {
         this.name = name;
         this.numSets = numSets;
@@ -51,6 +55,7 @@ public class Lift {
         return setsCompleted;
     }
 
+    // restores saved workouts  
     public void restoreState(double lastWeight, int lastReps, int setsCompleted) {
         if (lastWeight < 0) {
             throw new IllegalArgumentException("Weight cannot be negative");
@@ -66,6 +71,7 @@ public class Lift {
         this.setsCompleted = setsCompleted;
     }
 
+    // validates input and stores results of completed workout sessions  
     public void logWorkout(double weight, int lowestRep, int setsCompleted) {
         if (weight < 0) {
             throw new IllegalArgumentException("Weight cannot be negative");
@@ -80,7 +86,7 @@ public class Lift {
         this.lastReps = lowestRep;
         this.setsCompleted = setsCompleted;
     }
-
+    // claculates target for next session by using completed sets to set goal and increment the number of reps for the next session
     public String getNextTarget() {
         if (setsCompleted == 0) {
             return "Start at baseline (" + numSets + "x" + minReps + "-" + maxReps + ")";
