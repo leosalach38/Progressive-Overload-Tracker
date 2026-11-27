@@ -5,12 +5,15 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        DataLog dataLog = new DataLog("data/workouts.csv");
 
-        Lift[] lifts = {
+        Lift[] defaultLifts = {
                 new Lift("Bench Press", 3, 5, 8, 5.0),
                 new Lift("Squat", 3, 5, 8, 5.0),
                 new Lift("Deadlift", 3, 3, 5, 10.0)
         };
+
+        Lift[] lifts = dataLog.loadOrDefault(defaultLifts);
 
         while (true) {
             System.out.println("\n--- Simple Overload Tracker ---");
@@ -42,6 +45,7 @@ public class Main {
                 int reps = readInt(reader);
 
                 selected.logWorkout(weight, reps, sets);
+                dataLog.save(lifts);
                 System.out.println("Updated! next goal: " + selected.getNextTarget());
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid entry: " + e.getMessage() + ". Please try again.");
